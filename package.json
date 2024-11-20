@@ -1,0 +1,19 @@
+{
+  "name": "rumsey-scripts",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@allmaps/annotation": "^1.0.0-beta.30",
+    "cli-progress": "^3.12.0",
+    "json-2-csv": "^5.5.6"
+  },
+  "scripts": {
+    "convert": "bun run index.ts"
+  }
+}
