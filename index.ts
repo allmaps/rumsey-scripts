@@ -42,7 +42,7 @@ const inputFile = Bun.file(inputPath);
 const outputFile = Bun.file(outputPath);
 const writer = outputFile.writer();
 
-// processFileLineByLine(inputFile, processLine);
+processFileLineByLine(inputFile, processLine);
 
 export async function processFileLineByLine(
   bunFile: BunFile,
