@@ -12,7 +12,11 @@ export const makeAnnotationPage = (mapArray: Map[], id: string) => {
   };
 };
 
-export const createMinimalMap = (data: rumseyData) => {
+export const createMinimalMap = (
+  data: rumseyData,
+  dimensions: (number | null | undefined)[]
+) => {
+  const [width, height] = dimensions;
   const id = data.iiifManifest
     .replace("https://www.davidrumsey.com/luna/servlet/iiif/m/", "")
     .replace("/manifest", "");
@@ -22,11 +26,19 @@ export const createMinimalMap = (data: rumseyData) => {
   ]);
   const m = data.cutline;
   const t = data.transformation_method;
-  return { id, gcps, m, t };
+  if (width && height) {
+    return { id, gcps, m, t, d: dimensions };
+  } else {
+    return { id, gcps, m, t };
+  }
 };
 
-export const createMap = (data: rumseyData) => {
+export const createMap = (
+  data: rumseyData,
+  dimensions: (number | null | undefined)[]
+) => {
   // const resourceId = data.image_url.replace("/info.json", "");
+  const [width = 1000, height = 1000] = dimensions;
   const resourceId = data.iiifManifest
     .replace("/manifest", "")
     .replace("iiif/m/", "iiif/");
@@ -37,8 +49,6 @@ export const createMap = (data: rumseyData) => {
     data.transformation_method === "tps"
       ? "thinPlateSpline"
       : "polynomial";
-  const width = 1000;
-  const height = 1000;
   const map = {
     ["@context"]: "https://schemas.allmaps.org/map/2/context.json",
     id: data.id,
