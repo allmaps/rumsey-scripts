@@ -11,18 +11,19 @@ function saveJson(json: any, filename: string, path: string) {
   return Bun.write(`${path}/${filename}.json`, JSON.stringify(json, null, 4));
 }
 
-export async function fetchImageInformationWithCache(
+export async function fetchJsonWithCache(
   id: string,
   url: string,
+  folder: string,
   useCache: boolean = true
 ) {
   if (useCache) {
-    const cache = await getCache(id, "images");
+    const cache = await getCache(id, folder);
     if (cache) return cache;
   }
   let resp = await fetch(url);
   if (!resp.ok) return null;
   const json = await resp.json();
-  await saveJson(json, id, cacheDir + "images/");
+  await saveJson(json, id, cacheDir + folder);
   return json;
 }

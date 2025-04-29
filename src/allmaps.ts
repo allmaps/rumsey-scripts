@@ -14,7 +14,7 @@ export const makeAnnotationPage = (mapArray: Map[], id: string) => {
 
 export const createMinimalMap = (
   data: rumseyData,
-  dimensions: (number | null | undefined)[]
+  dimensions: (number | undefined)[]
 ) => {
   const [width, height] = dimensions;
   const id = data.iiifManifest
@@ -35,7 +35,7 @@ export const createMinimalMap = (
 
 export const createMap = (
   data: rumseyData,
-  dimensions: (number | null | undefined)[]
+  dimensions: (number | undefined)[]
 ) => {
   // const resourceId = data.image_url.replace("/info.json", "");
   const [width = 1000, height = 1000] = dimensions;
@@ -45,10 +45,7 @@ export const createMap = (
   const gcps = JSON.parse(data.gcps.replaceAll("'", '"'));
   const resourceMask = data.cutline;
   const transformation =
-    data.transformation_method === "affine" ||
-    data.transformation_method === "tps"
-      ? "thinPlateSpline"
-      : "polynomial";
+    data.transformation_method === "tps" ? "thinPlateSpline" : "polynomial";
   const map = {
     ["@context"]: "https://schemas.allmaps.org/map/2/context.json",
     id: data.id,
@@ -75,6 +72,12 @@ export const createMap = (
     resourceMask,
     transformation: {
       type: transformation,
+    },
+    // Some extra props used for sorting and grouping
+    _rumsey: {
+      pub: Math.trunc(data.list_no),
+      year: data.date,
+      reviewed: data.is_reviewed === "True" ? true : false,
     },
   };
   return map;

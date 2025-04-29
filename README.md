@@ -32,6 +32,17 @@ Use the `--test` flag to use the file `_data/test.csv` instead.
 
 Add the `--dimensions` flag to fetch (and cache) the `info.json` response for all images. This is used to populate the `width` and `height` properties of the annotations (which are missing in the source data).
 
+`--endpoint [klokan|luna]` defines the endpoint used to fetch the image information. Optional; defaults to `luna`.
+
+## Grouping
+
+Input from Katherine McDonough:
+
+- Pub List no will be good for grouping maps that are within an atlas, series or similar.
+- List no is the record id that is unique for single sheet maps, or has a decimal that will indicate the sheet/page within an atlas/series.
+- “Type” and “pub type” are actually quite interesting and systematic across the data. These are the different types of publications, e.g. atlas, manuscript map, military atlas, land use, etc.
+- I would recommend splitting by date - this is complicated of course because of the difference between data and pub_date, but it’s a starting point for having meaningful sets.
+
 ## Todo
 
 - Combine maps into Annotation Pages based on identical metadata
