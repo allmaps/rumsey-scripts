@@ -4,7 +4,8 @@
   "type": "module",
   "devDependencies": {
     "@iiif/presentation-3": "^2.2.3",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/cli-progress": "^3.11.6"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
