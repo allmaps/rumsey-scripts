@@ -45,12 +45,12 @@ Input from Katherine McDonough:
 
 ## Todo
 
-- Combine maps into Annotation Pages based on identical metadata
-- Offer an option to output separate json files
-- ~~Add a script to scrape image width and height from public IIIF Image API endpoints~~
-- Add a filter for reviewed maps
-- Process some of the metadata in order to add e.g. labels to `partOf` objects.
-- Publish annotations to Allmaps API
+- [x] Combine maps into Annotation Pages based on identical metadata
+- [ ] Offer an option to output separate json files
+- [x] Add a script to scrape image width and height from public IIIF Image API endpoints
+- [x] Add a filter for reviewed maps
+- [x] Process some of the metadata in order to add e.g. labels to `partOf` objects.
+- [x] Publish annotations to Allmaps API
 
 ## Credits
 
